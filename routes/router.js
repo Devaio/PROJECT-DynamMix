@@ -13,5 +13,5 @@ exports.login = function(req, res){
 }
 
 exports.loggedIn = function(req, res){
-	res.render('userinfo', { username : username, title: 'DynaTune' })
+	res.render('userinfo', { username : username, title: 'DynaTune' }) 
 }
