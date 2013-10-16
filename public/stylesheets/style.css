@@ -1,13 +1,22 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-a {
-  color: #00b7ff;
-}
 .footerCopy {
   color: #dcdcdc;
 }
 #footer {
   padding: 10px;
+}
+.mainLogo {
+  padding: 25px;
+  margin-left: 5%;
+  width: 50%;
+}
+.login {
+  padding: 15px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.loginInput {
+  margin-top: 10px;
+  margin-right: 10px;
+  width: 150px;
 }
