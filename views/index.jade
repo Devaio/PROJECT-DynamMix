@@ -10,17 +10,11 @@ body
 		h1 #{title}
 		p Welcome to #{title}
 	.login
-		form(method='post')
+		form(action='login', method='post')
 			fieldset
 				input.loginInput(type='text', name='username', placeholder='Username')
 				input.loginInput(type='password', name='password', placeholder='Password')
 				input.btn.btn-info.btn-small(type='submit', value="Log In!")
 	block content
-
-
-
-
-
-
 
 include footer

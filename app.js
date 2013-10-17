@@ -7,8 +7,10 @@ var express = require('express');
 var router = require('./routes/router');
 var http = require('http');
 var path = require('path');
-var scripts = require(__dirname + '/public/javascripts/scripts.js')
+var flash = require('connect-flash');
+var scripts = require(__dirname + '/public/javascripts/scripts.js');
 var app = express();
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -20,9 +22,12 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(app.router);
 app.use(require('stylus').middleware(__dirname + '/public'));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // development only
 if ('development' == app.get('env')) {
@@ -36,7 +41,27 @@ http.createServer(app).listen(app.get('port'), function(){
 });
 
 
-app.post('/', router.login)
+app.post('/login',
+	passport.authenticate('local',
+		{ successFlash: req.flash('Welcome!'),
+		failureFlash: req.flash('Invalid username or password.')
+	}),
+	function(req, res){
+		res.redirect('/users' + req.user.username);
+	});
 
-app.get('/:username', router.loggedIn)
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
 
