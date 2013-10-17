@@ -77,4 +77,22 @@ app.get('/auth/facebook/callback',
 		failureRedirect: '/login'
 	}));
 
-app.listen('port');
+
+// need local authentication for usernames/passwords created on the site
+// app.post('/login', 
+//   passport.authenticate('local', { failureRedirect: '/login' }),
+//   function(req, res) {
+//     res.redirect('/:username');
+//   });
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,16 +2,14 @@
  * GET home page.
  */
 
-exports.index = function(req, res){
-  res.render('index', { title: 'DynamMix' });
-};
-
 exports.login = function(req, res){
-	username = req.body.username || "Anonymous";
+	username = req.body.username || undefined;
 	req.session.username = username
 	res.redirect('/'+username)
 }
 
-exports.loggedIn = function(req, res){
-	res.render('userinfo', { username : username, title: 'DynamMix' })
-}
+exports.index = function(req, res){
+	username = req.body.username || undefined;
+	req.session.username = username
+  res.render('index', { title: 'DynamMix', username : username });
+};

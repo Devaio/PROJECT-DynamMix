@@ -1,22 +1,13 @@
-doctype 5
-html
-	head
-	title #{title}
-	link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel="stylesheet")
-	link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-	link(rel='stylesheet', href='/stylesheets/style.css')
-body
-	include facebook.html
-	.hero-unit.mainLogo
-		h1 #{title}
-		p Welcome to #{title}
-	.login
-		a(href="/auth/facebook") Login with Facebook
-		form(action='login', method='post')
-			fieldset
-				input.loginInput(type='text', name='username', placeholder='Username')
-				input.loginInput(type='password', name='password', placeholder='Password')
-				input.btn.btn-info.btn-small(type='submit', value="Log In!")
-	block content
+include header
+
+//- need to find a way to add dynamic content to these list items
+.row-fluid
+	.newContentFeed.span6.offset1
+		ul
+			li new newContent
+			li more new stuff
+			li even more!
+
+
 
 include footer

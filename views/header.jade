@@ -1,0 +1,15 @@
+doctype 5
+html
+	head
+	title #{title}
+	link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel="stylesheet")
+	link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+	link(rel='stylesheet', href='/stylesheets/style.css')
+body
+	include facebook.html
+	.hero-unit.mainLogo
+		h1 #{title}
+		p Welcome to #{title}
+	include login
+
+	block content
