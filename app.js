@@ -47,7 +47,6 @@ http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
 
-
 app.post('/login',
   passport.authenticate('local',
 	{ successRedirect: '/',
@@ -79,3 +78,4 @@ app.get('/auth/facebook/callback',
 		failureRedirect: '/login'
 	}));
 
+app.listen(port);
