@@ -10,7 +10,8 @@ var path = require('path');
 var flash = require('connect-flash');
 var scripts = require(__dirname + '/public/javascripts/scripts.js');
 var app = express();
-var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+var passport = require('passport'),
+	FacebookStrategy = require('passport-facebook').Strategy;
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -34,6 +35,12 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.configure(function() {
+  app.use(express.cookieParser('keyboard cat'));
+  app.use(express.session({ cookie: { maxAge: 60000 }}));
+  app.use(flash());
+});
+
 app.get('/', router.index);
 
 http.createServer(app).listen(app.get('port'), function(){
@@ -42,26 +49,33 @@ http.createServer(app).listen(app.get('port'), function(){
 
 
 app.post('/login',
-	passport.authenticate('local',
-		{ successFlash: req.flash('Welcome!'),
-		failureFlash: req.flash('Invalid username or password.')
-	}),
-	function(req, res){
-		res.redirect('/users' + req.user.username);
-	});
+  passport.authenticate('local',
+	{ successRedirect: '/',
+	failureRedirect: '/login' }
+	));
 
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function(err, user) {
+passport.use(new FacebookStrategy({
+    clientID: 439594016145506,
+    clientSecret: 'ad6298f9c42943e2775163bd4f64d589',
+    callbackURL: "http://www.dynammix.io/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    User.findOrCreate(
+		{ id : id,
+		name : name}, function(err, user) {
       if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
+      done(null, user);
     });
   }
 ));
+
+app.get('/auth/facebook',
+	passport.authenticate('facebook')
+	);
+
+app.get('/auth/facebook/callback',
+	passport.authenticate('facebook',
+		{ successRedirect: '/',
+		failureRedirect: '/login'
+	}));
 
