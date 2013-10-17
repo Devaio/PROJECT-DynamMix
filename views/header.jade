@@ -7,9 +7,10 @@ html
 	link(rel='stylesheet', href='/stylesheets/style.css')
 body
 	include facebook.html
-	.hero-unit.mainLogo
-		h1 #{title}
-		p Welcome to #{title}
+	.row-fluid
+		.hero-unit.mainLogo.span5.offset1
+			h1 #{title}
+			p Welcome to #{title}
 	include login
 
 	block content

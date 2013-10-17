@@ -1,12 +1,14 @@
 if username
-	.login
-		p Welcome back #{username.username}!
+	.row-fluid
+		.login.span3
+			p Welcome back #{username.username}!
 else 
-	include facebook.html
-	.login
-		a(href="/auth/facebook") Login with Facebook
-		form(action='/login', method='post')
-			fieldset
-				input.loginInput(type='text', name='username', placeholder='Username')
-				input.loginInput(type='password', name='password', placeholder='Password')
-				input.btn.btn-info.btn-small(type='submit', value="Log In!")
+	.row-fluid
+		include facebook.html
+		.login.span3
+			a(href="/auth/facebook") Login with Facebook
+			form.signin(action='/login', method='post')
+				fieldset
+					input.loginInput.username(type='text', name='username', placeholder='Username')
+					input.loginInput.password(type='password', name='password', placeholder='Password')
+					input.btn.btn-info.btn-small(type='submit', value="Log In!")
