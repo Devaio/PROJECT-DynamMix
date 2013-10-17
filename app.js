@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -78,4 +77,4 @@ app.get('/auth/facebook/callback',
 		failureRedirect: '/login'
 	}));
 
-app.listen(port);
+app.listen('port');
