@@ -55,7 +55,7 @@ app.post('/login',
 passport.use(new FacebookStrategy({
     clientID: 439594016145506,
     clientSecret: 'ad6298f9c42943e2775163bd4f64d589',
-    callbackURL: "http://www.dynammix.io/auth/facebook/callback"
+    callbackURL: "http://dynammix.herokuapp.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     User.findOrCreate(
