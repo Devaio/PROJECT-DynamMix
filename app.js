@@ -64,7 +64,7 @@ passport.use(new FacebookStrategy({
       if (err) { return done(err); }
       done(null, user);
     });
-  }
+  } 
 ));
 
 app.get('/auth/facebook',
