@@ -173,19 +173,23 @@ trackStream.on('nowPlaying', function(track) {
 trackStream.start();
 
 
-//getting relevant info - currently returning [object object] for success message
-// var request = lastfm.request("artist.getInfo", {
-//     artist: "The Mae Shi",
-//     handlers: {
-//         success: function(data) {
-//             console.log("Success: " + data);
-//         },
-//         error: function(error) {
-//             console.log("Error: " + error.message);
-//         }
-//     }
-// });
+//getting relevant
+var request = lastfm.request("artist.getInfo", {
+    artist: "The Mae Shi",
+    handlers: {
+        success: function(data) {
+            console.log("Success: " + data.artist.name + '\n Similar to: ' + data.artist.similar.artist[0].name); //returns one similar artist
+            console.log(data.artist.similar.artist)
+        },
+        error: function(error) {
+            console.log("Error: " + error.message);
+        }
+    }
+});
 
+// app.get('/testplay', function(req, res){
+//   res.render('index', {artist: })
+// })
 
 
 
