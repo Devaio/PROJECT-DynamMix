@@ -12,6 +12,11 @@ var app = express();
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
+var LastFmNode = require('lastfm').LastFmNode;
+var lastfm = new LastFmNode({
+  api_key: '1805293d5e058d03761b53547ec0ad74',
+  secret: 'ff65671f88c114e3752236f465566c67',
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -152,6 +157,33 @@ app.post('/login',
 
 
 
+
+var trackStream = lastfm.stream('devaio'); //add username after stream - dynamic!
+
+//gets most recently played song lastfm
+trackStream.on('lastPlayed', function(track) {
+  console.log('Last played: ' + track.name);
+});
+
+//gets currently playing song lastfm
+trackStream.on('nowPlaying', function(track) {
+  console.log('Now playing: ' + track.name);
+});
+trackStream.start();
+
+
+//getting relevant info - currently returning [object object] for success message
+var request = lastfm.request("artist.getInfo", {
+    artist: "The Mae Shi",
+    handlers: {
+        success: function(data) {
+            console.log("Success: " + data);
+        },
+        error: function(error) {
+            console.log("Error: " + error.message);
+        }
+    }
+});
 
 
 
