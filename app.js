@@ -162,28 +162,29 @@ var trackStream = lastfm.stream('devaio'); //add username after stream - dynamic
 
 //gets most recently played song lastfm
 trackStream.on('lastPlayed', function(track) {
-  console.log('Last played: ' + track.name);
+  console.log('Last played: ' + track.name + ' by ' + track.artist['#text']) //track name by artist
 });
 
 //gets currently playing song lastfm
 trackStream.on('nowPlaying', function(track) {
-  console.log('Now playing: ' + track.name);
+  console.log('Now playing: ' + track.name + ' by ' + track.artist['#text']);
 });
+
 trackStream.start();
 
 
 //getting relevant info - currently returning [object object] for success message
-var request = lastfm.request("artist.getInfo", {
-    artist: "The Mae Shi",
-    handlers: {
-        success: function(data) {
-            console.log("Success: " + data);
-        },
-        error: function(error) {
-            console.log("Error: " + error.message);
-        }
-    }
-});
+// var request = lastfm.request("artist.getInfo", {
+//     artist: "The Mae Shi",
+//     handlers: {
+//         success: function(data) {
+//             console.log("Success: " + data);
+//         },
+//         error: function(error) {
+//             console.log("Error: " + error.message);
+//         }
+//     }
+// });
 
 
 
