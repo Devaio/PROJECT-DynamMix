@@ -1,0 +1,11 @@
+Express server listening on port \\.\pipe\865543d8-326a-458e-86cf-2b349e713785
+[90mGET / [32m200 [90m666ms - 6.56kb[0m
+Last played: Wish You Were Here by Steven Wilson
+Success: Porcupine Tree
+Similar to: Steven Wilson
+[ 'Steven Wilson',
+  'Blackfield',
+  'No-Man',
+  'Storm Corrosion',
+  'Bass Communion' ]
+[90mGET / [36m304 [90m103ms[0m

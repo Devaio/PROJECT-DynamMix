@@ -1,0 +1,20 @@
+//- need to find a way to add dynamic content to these list items
+if relatedArtists
+	.row-fluid
+		.newContentFeed.span7.offset1 
+			p.newContentFeedTitle Artists Related to #{artist}
+				ul.relatedArtists
+					each val, index in relatedArtists
+						.relatedArtistList
+							.relatedArtistImage(style='background-image:url("'+val+'")')
+							li= index
+
+else
+	.row-fluid
+		.newContentFeed.span7.offset1
+			p.newContentFeedTitle Here's What's New!
+				ul.newContent
+					li NEW SONGS!
+					li more new stuff
+					li even more!
+					li #{user}

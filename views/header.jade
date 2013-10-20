@@ -10,7 +10,11 @@ body
 	.row-fluid
 		.hero-unit.mainLogo.span5.offset1
 			h1 #{title}
-			p Welcome to #{title}
+			p the dynamic playlist creator
+	form.artistSearchForm
+		input.artistSearch(type='text', name='artistSearch', placeholder='Search an artist')
+		input.artistSearchSubmit.btn.btn-success(type='submit', name='artistSearchSubmit', value='Go!')
 	include login
+
 
 	block content

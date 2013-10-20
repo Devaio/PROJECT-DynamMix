@@ -12,6 +12,7 @@
     "passport": "*",
     "passport-facebook": "*",
     "connect-flash": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "lastfm": "*"
   }
 }
