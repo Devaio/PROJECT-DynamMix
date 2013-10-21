@@ -20,21 +20,33 @@
   margin-right: 10px;
   width: 150px;
 }
-.newContentFeed {
-  background-color: #0ff;
+.mainLogoLink * {
+  color: #008000;
+}
+.contentFeed {
+  border-radius: 5px;
+  background-color: #dcdcdc;
   padding: 15px;
 }
-.newContentFeedTitle {
+.contentFeedTitle {
   text-align: center;
 }
-.relatedArtists {
+#relatedArtists {
   list-style: none;
 }
-.relatedArtists li {
+#relatedArtists li {
   font-size: 2em;
   display: inline;
   margin: 5px;
   vertical-align: super;
+}
+.newContentFeed {
+  border-radius: 5px;
+  background-color: #00b8e6;
+  padding: 15px;
+}
+.newContentFeedTitle {
+  text-align: center;
 }
 .artistImage,
 body {

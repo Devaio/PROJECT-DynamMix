@@ -7,7 +7,6 @@ var router = require('./routes/router');
 var http = require('http');
 var path = require('path');
 var flash = require('connect-flash');
-var scripts = require(__dirname + '/public/javascripts/scripts.js');
 var app = express();
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -112,7 +111,9 @@ app.configure(function() {
   app.use(flash());
 });
 
-app.get('/', router.index);
+app.get('/', function(req, res){
+  res.render('index', {firstpage : true, title: 'DynamMix'})
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
@@ -174,26 +175,34 @@ trackStream.start();
 
 
 //getting relevant
-var relatedArtists = {};
-var artist;
-var request = lastfm.request("artist.getInfo", {
-    artist: "Dragonland",
-    handlers: {
-        success: function(data) {
-          artist = data.artist.name
-            for (var i = 0; i <  data.artist.similar.artist.length; i++) {
-              relatedArtists[data.artist.similar.artist[i].name] = (data.artist.similar.artist[i].image[3]['#text'])
+var getRelatedArtists = function(getArtist){
+  var relatedArtists = {};
+  var artist;
+  var request = lastfm.request("artist.getInfo", {
+      artist: getArtist,
+      handlers: {
+          success: function(data) {
+            artist = data.artist.name
+              for (var i = 0; i <  data.artist.similar.artist.length; i++) {
+                relatedArtists[data.artist.similar.artist[i].name] = (data.artist.similar.artist[i].image[3]['#text'])
+              };
+              return relatedArtists
+          },
+          error: function(error) {
+              console.log("Error: " + error.message);
+          }
+      }
+  })
+  return relatedArtists;
+}
+app.post('/related', function(req, res){
 
-            };
-        },
-        error: function(error) {
-            console.log("Error: " + error.message);
-        }
-    }
-})
+  var relArtist = getRelatedArtists(req.body.artistSearch);
+  setTimeout(function(){res.send({title: 'DynamMix', artist: req.body.artistSearch, relatedArtists : relArtist})}, 1000);
+});
 
-app.get('/testplay', function(req, res){
-  res.render('index', {title: 'DynamMix', relatedArtists : relatedArtists, artist :artist})
+app.get('/related', function(req,res){
+  res.render('index', {artist : req.query.artistSearch})
 })
 
 

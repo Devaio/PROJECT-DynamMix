@@ -1,0 +1,15 @@
+<script id="relArt-template" type="text/x-handlebars-template">
+        {{#if relArt}}
+        <div class="contentFeed span7 offset1" 
+			<ul id="relatedArtists">
+        	<p class="contentFeedTitle"> Artists Related to {{artist}}</p>
+                {{#each relArt}}
+                	<div class="relatedArtistList">
+                		<div class="relatedArtistImage" style='background-image:url("{{this}}")'></div>
+                        	<li>{{@key}}</li>
+                    </div>
+                {{/each}}
+      		</ul>
+      	</div>
+        {{/if}}
+</script>
