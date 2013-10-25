@@ -1,0 +1,4 @@
+Express server listening on port \\.\pipe\4b7eb6ec-9959-4a7c-b081-f3a7dc9ab58e
+[90mGET / [32m200 [90m1074ms - 7.38kb[0m
+Last played: Wish You Were Here by Steven Wilson
+[90mGET / [36m304 [90m78ms[0m
