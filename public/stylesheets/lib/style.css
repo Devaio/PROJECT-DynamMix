@@ -27,6 +27,8 @@
   border-radius: 5px;
   background-color: #dcdcdc;
   padding: 15px;
+  box-shadow: 0 0 10px #000;
+  margin-bottom: 20px;
 }
 .contentFeedTitle {
   text-align: center;
@@ -44,6 +46,7 @@
   border-radius: 5px;
   background-color: #00b8e6;
   padding: 15px;
+  box-shadow: 0 0 10px #000;
 }
 .newContentFeedTitle {
   text-align: center;

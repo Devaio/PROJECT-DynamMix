@@ -1,11 +1,11 @@
 fs = require 'fs'
 {print} = require 'sys'
 {log, error} = console; print = log
-{exec} = require 'child_process'
+{spawn, exec} = require 'child_process'
 
 run = (name, command, cb) ->
   cb = cb ? () ->
-  proc = exec(name, command.split(' '))
+  proc = spawn(name, command.split(' '))
   proc.stdout.on('data', (buffer) -> print buffer if buffer = buffer.toString().trim())
   proc.stderr.on('data', (buffer) -> error buffer if buffer = buffer.toString().trim())
   proc.on 'exit', (status) ->
@@ -13,10 +13,10 @@ run = (name, command, cb) ->
     cb()
 
 task 'dev', 'Setup my dev system', () ->
-  run 'coffee', ' --output lib --watch --compile src'
-  run 'coffee', ' --output public/javascripts/lib --watch --compile public/javascripts/src'
-  run 'stylus', ' -o public/stylesheets/lib -w public/stylesheets/src'
-  run 'supervisor', ' server'
+  run 'coffee', '--output lib --watch --compile src'
+  run 'coffee', '--output public/javascripts/lib --watch --compile public/javascripts/src'
+  run 'stylus', '-o public/stylesheets/lib -w public/stylesheets/src'
+  run 'supervisor', 'server'
 
 task 'build', 'Compress and minify files for production', () ->
   run 'banshee', 'public/javascripts/lib:public/javascripts/build.min.js -c'
