@@ -106,7 +106,7 @@ app.configure ->
 	app.use flash()
 
 app.get "/", (req, res) ->
-	res.render "intro",
+	res.render "intro"
 
 
 http.createServer(app).listen app.get("port"), ->
