@@ -13,6 +13,7 @@
     "passport-facebook": "*",
     "connect-flash": "~0.1.1",
     "passport-local": "*",
-    "lastfm": "*"
+    "lastfm": "*",
+    "coffee-script": "~1.6.3"
   }
 }
