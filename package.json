@@ -3,9 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node server.js"
   },
   "dependencies": {
+    "node": "*",
     "express": "3.4.0",
     "jade": "*",
     "stylus": "*",
