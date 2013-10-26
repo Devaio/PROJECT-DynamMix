@@ -48,7 +48,7 @@ app.use app.router
 app.use require("stylus").middleware(__dirname + "/../public")
 app.use express.static(path.join(__dirname, "/../public"))
 
-mongoose.connect 'mongodb://localhost/dynammix'
+mongoose.connect 'mongodb://<user>:<password>@paulo.mongohq.com:10049/app18751809'
 
 User = mongoose.model 'User', {
 	name: { type: String, required: true, unique: true },
