@@ -5,15 +5,3 @@ html
 	link(href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css", rel="stylesheet")
 	link(rel='stylesheet', href='/stylesheets/lib/bootstrap.css')
 	link(rel='stylesheet', href='/stylesheets/lib/style.css')
-
-body
-	include facebook.html
-	.row-fluid
-		a.mainLogoLink(href="/")
-			.hero-unit.mainLogo.span5.offset1
-				h1 #{title}
-				p the dynamic playlist creator
-	form.artistSearchForm
-		input.artistSearch(type='text', name='artistSearch', placeholder='Search an artist')
-		input.artistSearchSubmit.btn.btn-success(type='submit', name='artistSearchSubmit', value='Go!')
-	include login

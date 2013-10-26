@@ -31,6 +31,8 @@ lastfm = new LastFmNode(
 	api_key: "1805293d5e058d03761b53547ec0ad74"
 	secret: "ff65671f88c114e3752236f465566c67"
 )
+mongoose = require 'mongoose'
+
 app.set "port", process.env.PORT or 3000
 app.set "views", __dirname + "/../views"
 app.set "view engine", "jade"
@@ -45,17 +47,14 @@ app.use passport.session()
 app.use app.router
 app.use require("stylus").middleware(__dirname + "/../public")
 app.use express.static(path.join(__dirname, "/../public"))
-users = [
-	id: 1
-	username: "bob"
-	password: "secret"
-	email: "bob@example.com"
-,
-	id: 2
-	username: "joe"
-	password: "birthday"
-	email: "joe@example.com"
-]
+
+mongoose.connect 'mongodb://localhost/dynammix'
+
+User = mongoose.model 'User', {
+	name: { type: String, required: true, unique: true },
+	email: { type: String, required: true, unique: true },
+	password: { type: String, required: true }
+}
 
 # Passport session setup.
 #   To support persistent login sessions, Passport needs to be able to
@@ -107,7 +106,7 @@ app.configure ->
 	app.use flash()
 
 app.get "/", (req, res) ->
-	res.render "index",
+	res.render "intro",
 		firstpage: true
 		title: "DynamMix"
 
@@ -115,10 +114,19 @@ app.get "/", (req, res) ->
 http.createServer(app).listen app.get("port"), ->
 	console.log "Express server listening on port " + app.get("port")
 
-app.post "/login", passport.authenticate("local",
-	successRedirect: "/"
-	failureRedirect: "/login"
-)
+app.post "/signin", (req, res) ->
+	newUser = User {
+		name: req.body.username,
+		email: req.body.email,
+		password: req.body.password
+	}
+	newUser.save (err) ->
+		if err
+			res.send err
+		else
+			User.find { name : req.body.username }, (err, currentUser) ->
+				res.send {currentUser : currentUser}
+
 passport.use new FacebookStrategy(
 	clientID: 439594016145506
 	clientSecret: "ad6298f9c42943e2775163bd4f64d589"
@@ -133,28 +141,33 @@ passport.use new FacebookStrategy(
 
 )
 app.get "/auth/facebook", passport.authenticate("facebook")
-app.get "/auth/facebook/callback", passport.authenticate("facebook",
-	successRedirect: "/"
-	failureRedirect: "/login"
-)
+app.get "/auth/facebook/callback", (req, res) ->
+	passport.authenticate("facebook",
+	successRedirect: res.redirect '/' 
+	failureRedirect: res.redirect "/login"
+	)
 
 # need local authentication for usernames/passwords created on the site
 app.post "/login", passport.authenticate("local",
 	successRedirect: "/"
 	failureRedirect: "/login"
 )
-trackStream = lastfm.stream("devaio") #add username after stream - dynamic!
-
-#gets most recently played song lastfm
-trackStream.on "lastPlayed", (track) ->
-	console.log "Last played: " + track.name + " by " + track.artist["#text"] #track name by artist
 
 
-#gets currently playing song lastfm
-trackStream.on "nowPlaying", (track) ->
-	console.log "Now playing: " + track.name + " by " + track.artist["#text"]
 
-trackStream.start()
+
+# trackStream = lastfm.stream("devaio") #add username after stream - dynamic!
+
+# #gets most recently played song lastfm
+# trackStream.on "lastPlayed", (track) ->
+# 	console.log "Last played: " + track.name + " by " + track.artist["#text"] #track name by artist
+
+
+# #gets currently playing song lastfm
+# trackStream.on "nowPlaying", (track) ->
+# 	console.log "Now playing: " + track.name + " by " + track.artist["#text"]
+
+# trackStream.start()
 
 #getting relevant
 getRelatedArtists = (getArtist) ->

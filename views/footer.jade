@@ -1,8 +1,13 @@
-extends index
-block footer
-	#footer.navbar.navbar-fixed-bottom.navbar-inverse.footer
-		.footerCopy Copyright © DynaTune #{new Date().getFullYear()}
-		a(href='/page?name=about') about
-		|	| 
-		a(href='/page?name=contact') Contact Us
 
+
+#footer.navbar.navbar-fixed-bottom.navbar-inverse.footer
+	.footerCopy Copyright © DynamMix #{new Date().getFullYear()}
+	a(href='/page?name=about') about
+	|	| 
+	a(href='/page?name=contact') Contact Us
+	
+script(src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+script(src="http://connect.facebook.net/en_US/all.js")
+script(src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0/handlebars.min.js")
+script(src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js")
+script(src='/javascripts/lib/main.js')	

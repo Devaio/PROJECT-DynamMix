@@ -1,3 +1,8 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  background: url("/images/bgSplash.png") no-repeat center center fixed;
+}
 .footerCopy {
   color: #dcdcdc;
 }
@@ -22,6 +27,10 @@
 }
 .mainLogoLink * {
   color: #008000;
+}
+.rememberMe {
+  display: inline-block;
+  margin-right: 10px;
 }
 .contentFeed {
   border-radius: 5px;
@@ -69,4 +78,16 @@ body {
 }
 .artistSearch {
   margin-left: 25%;
+}
+#loginSplash {
+  width: 50%;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: rgba(100,100,100,0.9);
+  margin-top: 25%;
+  box-shadow: 0 0 1000px #fff;
+}
+.logoSplash {
+  color: #fff;
+  text-align: center;
 }
