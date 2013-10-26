@@ -11,7 +11,7 @@
     "stylus": "*",
     "passport": "*",
     "passport-facebook": "*",
-    "connect-flash": "*",
+    "connect-flash": "~0.1.1",
     "passport-local": "*",
     "lastfm": "*"
   }
