@@ -107,8 +107,6 @@ app.configure ->
 
 app.get "/", (req, res) ->
 	res.render "intro",
-		firstpage: true
-		title: "DynamMix"
 
 
 http.createServer(app).listen app.get("port"), ->
@@ -125,7 +123,7 @@ app.post "/signin", (req, res) ->
 			res.send err
 		else
 			User.find { name : req.body.username }, (err, currentUser) ->
-				res.send {currentUser : currentUser}
+				res.render 'index', {currentUser : currentUser}
 
 passport.use new FacebookStrategy(
 	clientID: 439594016145506
