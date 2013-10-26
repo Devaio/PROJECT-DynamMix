@@ -4,24 +4,44 @@ include header
 .navbar.navbar-fixed-top.navbar-inverse
 	h1.logoSplash DynamMix
 
+.container#signUp.hidden
+	h3.logoSplash Sign Up
+	form.form-horizontal.loginSplash(role='form')
+		.form-group
+			label.col-lg-2.control-label.pull-left(for='inputEmail1')
+			.col-lg-5
+				input#inputEmail1.form-control.splashLogin(type='email', name='email' placeholder='Email')
+		.form-group
+			label.col-lg-2.control-label.pull-left(for='inputUser1')
+			.col-lg-5
+				input#inputUser1.form-control.splashLogin(type='text', name='username', placeholder='Username')
+		.form-group
+			label.col-lg-2.control-label(for='inputPassword1')
+			.col-lg-5
+				input#inputPassword1.form-control.splashLogin(type='password', name='password', placeholder='Password')
+		.form-group
+			.col-lg-5.col-lg-offset-6
+				button.btn.btn-primary(type='submit') Sign in
+
 
 .container#loginSplash
 	.row-fluid.container
 		h3.logoSplash Log In!
+		a.toggleSignUp(href='#') Not a member yet?
 		form.form-horizontal.loginSplash(role='form')
-				.form-group
-					label.col-lg-2.control-label.pull-left(for='inputEmail1')
-					.col-lg-5
-						input#inputEmail1.form-control.splashLogin(type='email', name='email' placeholder='Email')
-				.form-group
-					label.col-lg-2.control-label.pull-left(for='inputUser1')
-					.col-lg-5
-						input#inputUser1.form-control.splashLogin(type='text', name='username', placeholder='Username')
-				.form-group
-					label.col-lg-2.control-label(for='inputPassword1')
-					.col-lg-5
-						input#inputPassword1.form-control.splashLogin(type='password', name='password', placeholder='Password')
-				.form-group
-					.col-lg-5.col-lg-offset-6
-						button.btn.btn-primary(type='submit') Sign in
+			.form-group
+				label.col-lg-2.control-label.pull-left(for='inputEmail1')
+				.col-lg-5
+					input#inputEmail1.form-control.splashLogin(type='email', name='email' placeholder='Email')
+			.form-group
+				label.col-lg-2.control-label.pull-left(for='inputUser1')
+				.col-lg-5
+					input#inputUser1.form-control.splashLogin(type='text', name='username', placeholder='Username')
+			.form-group
+				label.col-lg-2.control-label(for='inputPassword1')
+				.col-lg-5
+					input#inputPassword1.form-control.splashLogin(type='password', name='password', placeholder='Password')
+			.form-group
+				.col-lg-5.col-lg-offset-6
+					button.btn.btn-primary(type='submit') Sign in
 include footer

@@ -64,6 +64,10 @@ body {
 body {
   margin-bottom: 100px;
 }
+.toggleSignUp {
+  text-shadow: 0 0 5px #000;
+  float: right;
+}
 .relatedArtistList {
   display: block;
   border: thin solid #000;
@@ -79,7 +83,8 @@ body {
 .artistSearch {
   margin-left: 25%;
 }
-#loginSplash {
+#loginSplash,
+#signUp {
   width: 50%;
   border-radius: 20px;
   padding: 20px;

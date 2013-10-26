@@ -21,6 +21,10 @@
       relArtTemplate = Handlebars.compile($('#relArt-template').html());
       $('.artistSearchForm').val('');
     });
+    return;
+    return $(document).on('click', 'toggleSignUp', function(e) {
+      return $('#loginSplash').hide();
+    });
   });
 
 }).call(this);

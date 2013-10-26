@@ -18,4 +18,6 @@ $ ->
 		$('.artistSearchForm').val('')
 		return
 	return
-		
+	
+	$(document).on 'click', 'toggleSignUp', (e) ->
+		$('#loginSplash').hide()
