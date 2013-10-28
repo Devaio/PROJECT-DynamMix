@@ -4,44 +4,55 @@ include header
 .navbar.navbar-fixed-top.navbar-inverse
 	h1.logoSplash DynamMix
 
-.container#signUp.hidden
-	h3.logoSplash Sign Up
-	form.form-horizontal.loginSplash(role='form')
-		.form-group
-			label.col-lg-2.control-label.pull-left(for='inputEmail1')
-			.col-lg-5
-				input#inputEmail1.form-control.splashLogin(type='email', name='email' placeholder='Email')
-		.form-group
-			label.col-lg-2.control-label.pull-left(for='inputUser1')
-			.col-lg-5
-				input#inputUser1.form-control.splashLogin(type='text', name='username', placeholder='Username')
-		.form-group
-			label.col-lg-2.control-label(for='inputPassword1')
-			.col-lg-5
-				input#inputPassword1.form-control.splashLogin(type='password', name='password', placeholder='Password')
-		.form-group
-			.col-lg-5.col-lg-offset-6
-				button.btn.btn-primary(type='submit') Sign in
-
 
 .container#loginSplash
 	.row-fluid.container
 		h3.logoSplash Log In!
-		a.toggleSignUp(href='#') Not a member yet?
 		form.form-horizontal.loginSplash(role='form')
 			.form-group
-				label.col-lg-2.control-label.pull-left(for='inputEmail1')
-				.col-lg-5
-					input#inputEmail1.form-control.splashLogin(type='email', name='email' placeholder='Email')
+				label.col-2.control-label.pull-left(for='inputEmail2')
+				.col-5
+					input#inputEmail1.form-control.splashLogin(type='email', name='inEmail', placeholder='Email')
 			.form-group
-				label.col-lg-2.control-label.pull-left(for='inputUser1')
-				.col-lg-5
-					input#inputUser1.form-control.splashLogin(type='text', name='username', placeholder='Username')
+				label.col-2.control-label.pull-left(for='inputUser2')
+				.col-5
+					input#inputUser1.form-control.splashLogin(type='text', name='inUsername', placeholder='Username')
 			.form-group
-				label.col-lg-2.control-label(for='inputPassword1')
-				.col-lg-5
-					input#inputPassword1.form-control.splashLogin(type='password', name='password', placeholder='Password')
+				label.col-2.control-label(for='inputPassword2')
+				.col-5
+					input#inputPassword1.form-control.splashLogin(type='password', name='inPassword', placeholder='Password')
 			.form-group
-				.col-lg-5.col-lg-offset-6
-					button.btn.btn-primary(type='submit') Sign in
+				.col-5.col-offset-6
+					button.btn.btn-primary.pull-right(type='submit') Sign in
+					a.btn.btn-primary.btn-lg.pull-left(data-toggle="modal", href="#signInModal") Not a member yet?
+
+
+#signInModal.modal.fade(tabindex='-1', role='dialog', aria-hidden='true')
+	.modal-content
+		.modal-header
+		button.close(type='button', data-dismiss='modal', aria-hidden='true') ×
+		h4.modal-title Sign Up!
+		.modal-body
+			.row-fluid.container
+				form.form-horizontal.signUpSplash(role='form')
+					.form-group
+						label.col-2.control-label.pull-left(for='inputEmail1')
+						.col-5
+							input#inputEmail1.splashLogin(type='email', name='upEmail' placeholder='Email')
+					.form-group
+						label.col-2.control-label.pull-left(for='inputUser1')
+						.col-5
+							input#inputUser1.splashLogin(type='text', name='upUsername', placeholder='Username')
+					.form-group
+						label.col-2.control-label(for='inputPassword1')
+						.col-5
+							input#inputPassword1.splashLogin(type='password', name='upPassword', placeholder='Password')
+					.modal-footer
+						button.btn.btn-primary(type='submit') Sign Up
+						button.btn.btn-default.pull-left(type='button', data-dismiss='modal') Close
+
+
+
+
+
 include footer

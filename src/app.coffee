@@ -48,7 +48,7 @@ app.use app.router
 app.use require("stylus").middleware(__dirname + "/../public")
 app.use express.static(path.join(__dirname, "/../public"))
 
-mongoose.connect 'mongodb://<user>:<password>@paulo.mongohq.com:10049/app18751809'
+mongoose.connect 'mongodb://localhost'
 
 User = mongoose.model 'User', {
 	name: { type: String, required: true, unique: true },
@@ -114,16 +114,18 @@ http.createServer(app).listen app.get("port"), ->
 
 app.post "/signin", (req, res) ->
 	newUser = User {
-		name: req.body.username,
-		email: req.body.email,
-		password: req.body.password
+		name: req.body.upUsername,
+		email: req.body.upEmail,
+		password: req.body.upPassword
 	}
 	newUser.save (err) ->
 		if err
 			res.send err
 		else
-			User.find { name : req.body.username }, (err, currentUser) ->
+			User.find { name : req.body.upUsername }, (err, currentUser) ->
 				res.render 'index', {currentUser : currentUser}
+				return
+	return
 
 passport.use new FacebookStrategy(
 	clientID: 439594016145506

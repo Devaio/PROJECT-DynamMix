@@ -1,9 +1,11 @@
 $ ->
-	$(document).on "submit", ".loginSplash", (e) ->
+	$('.signUpSplash').on 'submit', (e) ->
 		e.preventDefault()
+		console.log $(@).serialize()
 		$.post "/signin", $(@).serialize(), (data) ->
 			console.log data
 			return
+		$('#signInModal').modal('toggle')
 		return
 
 
@@ -17,7 +19,5 @@ $ ->
 		relArtTemplate = Handlebars.compile $('#relArt-template').html()
 		$('.artistSearchForm').val('')
 		return
-	return
 	
-	$(document).on 'click', 'toggleSignUp', (e) ->
-		$('#loginSplash').hide()
+	return
